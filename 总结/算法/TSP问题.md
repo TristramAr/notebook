@@ -9,18 +9,17 @@ TSP问题一般采用动态规划法，这里先采用回溯法来解决该问�
 #include <vector>
 #include <algorithm>
 using namespace std;
-void backTrack(vector<vector<int>> &prices, int n, vector<int> &path, vector<int> &bestPath,
-               int curCity, int cp, int &res)
+void backTrack(vector<vector<int>> &prices, int n, vector<int> &path, vector<int> &bestPath,int curCity, int cp, int &res)
 {
     if (curCity > n)   //准备返程，加上返程的钱
     {
         if (prices[path[n]][1] &&        // path[n] 最后到达的城市，准备返回老家（起点）。
-            prices[path[n]][1] + cp < res// 如果当前路径总和比其他方案的res大，则选择该方案。
+            prices[path[n]][1] + cp < res)// 如果当前路径总和比其他方案的res大，则选择该方案。
         {
             res = prices[path[n]][1] + cp;      
             for (int i = 1; i <= n;i++)  //记录当前res的路径
             {
-                bestPath[i] = path[i];
+                bestPath[i] = path[i]; 
             }
         }
     }
@@ -151,7 +150,7 @@ int getAns(vector<vector<int>> &nums)
     vector<vector<int>> dp(n, vector<int>(stateNum, MAX));
     for (int i = 0; i < n; i++)
     {
-        dp[i][0] = nums[i][0]; //每个城市会到起点的花费
+        dp[i][0] = nums[i][0]; //每个城市hui到起点的花费
     }
     // 这里j不仅是dp表的列坐标值，j的二进制表示城市相应城市是否在子集中
     for (int j = 1; j < stateNum; j++)
